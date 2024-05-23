@@ -1,0 +1,35 @@
+#include <iostream>
+#include <string>
+#include <sstream>
+
+using namespace std;
+
+// Function to count the number of words in a sentence
+int countWordsInSentence(const string& sentence) {
+    stringstream ss(sentence);
+    string word;
+    int count = 0;
+    
+    // Extract each word and count
+    while (ss >> word) {
+        count++;
+    }
+    
+    return count;
+}
+
+int main() {
+    string sentence;
+    
+    // Get the sentence from the user
+    cout << "Enter a sentence: ";
+    getline(cin, sentence);
+    
+    // Count the number of words in the sentence
+    int wordCount = countWordsInSentence(sentence);
+    
+    // Display the word count
+    cout << "The number of words in the sentence is: " << wordCount << endl;
+    
+    return 0;
+}
