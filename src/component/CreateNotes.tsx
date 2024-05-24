@@ -18,6 +18,7 @@ const CreateNotes = () => {
           Title
         </label>
         <input
+          required
           {...register("title")}
           type="text"
           id="title"
@@ -31,6 +32,7 @@ const CreateNotes = () => {
           Description
         </label>
         <textarea
+          required
           {...register("description")}
           id="description"
           name="description"
