@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import useNoteStore, { Note } from "../store/noteStore";
 import RenderAllCards from "./RenderAllCards";
 import Pagination from "./Pagination";
+import usePaginate from "../hooks/usePaginate";
 const Dashboard = () => {
   const { notes, deleteNote } = useNoteStore();
   const [data, setDate] = useState<Note[]>(() => {
@@ -9,22 +10,13 @@ const Dashboard = () => {
     const parseData = noteState && JSON.parse(noteState);
     return parseData ? parseData.state.notes : [];
   });
-  const itemsPerPage = 4;
+
+  const { currentItems, itemsPerPage, handleClick, currentPage, totalPages } =
+    usePaginate(data);
 
   useEffect(() => {
     setDate(notes);
   }, [notes]);
-
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = Math.ceil(data.length / itemsPerPage);
-
-  const handleClick = (page: number) => {
-    setCurrentPage(page);
-  };
-
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
 
   return (
     <>
