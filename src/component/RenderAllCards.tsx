@@ -15,7 +15,7 @@ const RenderAllCards = ({ deleteNote, data }: Props) => {
     <div>
       <div>Total: {data?.length}</div>
       <div>Sort : </div>
-      <div className="grid grid-flow-row auto-rows-max place-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 border-2 border-red-400">
+      <div className="grid grid-flow-row auto-rows-max place-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {data?.map((note) => {
           return (
             <div
