@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Dashboard from "./component/Homepage.tsx";
+import Dashboard from "./component/Dashboard.tsx";
 import Layout from "./component/Layout.tsx";
 import CreateNotes from "./component/CreateNotes.tsx";
 

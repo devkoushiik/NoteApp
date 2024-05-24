@@ -1,28 +1,21 @@
-import useNoteStore, { Note } from "../store/noteStore";
-import { FaEdit } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
-import { useEffect, useState } from "react";
-const Dashboard = () => {
-  const { notes, deleteNote } = useNoteStore();
-  const [data, setDate] = useState<Note[]>(() => {
-    const noteState = localStorage.getItem("note-storage");
-    const parseData = noteState && JSON.parse(noteState);
-    return parseData ? parseData.state.notes : [];
-  });
+import { FaEdit } from "react-icons/fa";
+import { Note } from "../store/noteStore";
 
-  useEffect(() => {
-    setDate(notes);
-  }, [notes]);
+interface Props {
+  deleteNote: (id: string) => void;
+  data: Note[];
+}
 
+const RenderAllCards = ({ deleteNote, data }: Props) => {
   const handleDeleteNote = (id: string) => {
     deleteNote(id);
   };
-
   return (
     <div>
       <div>Total: {data?.length}</div>
       <div>Sort : </div>
-      <div className="grid place-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 border-2 border-red-400">
+      <div className="grid grid-flow-row auto-rows-max place-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 border-2 border-red-400">
         {data?.map((note) => {
           return (
             <div
@@ -31,7 +24,7 @@ const Dashboard = () => {
             >
               <div
                 className="flex justify-end gap-3
-               mt-2 mr-2"
+             mt-2 mr-2"
               >
                 <div>
                   <FaEdit size={20} />
@@ -58,4 +51,4 @@ const Dashboard = () => {
     </div>
   );
 };
-export default Dashboard;
+export default RenderAllCards;
